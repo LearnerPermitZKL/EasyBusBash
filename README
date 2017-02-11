@@ -1,0 +1,25 @@
+Note:
+(m) mandatory
+(o) optional
+
+Difficulty:
+    TODO: UTF8 input bash
+
+
+Function:
+    TODO: add-person: 
+            Input: name (m)
+            Do: add the person name into file '.persons'
+
+
+    TODO: add-buy: 
+            Input: name (m), money-paid (m), money-cost (m), item (o)
+            Do: sanity check paid and cost [cost should < paid]
+                Mark current date time into system
+
+    TODO: check-person:
+            Input: name (m)
+            Do: Dump person buy information
+                format-table money-paid, money-cost, profit, time, item
+                final line total money-paid, total money-cost, total profit from the person
+
