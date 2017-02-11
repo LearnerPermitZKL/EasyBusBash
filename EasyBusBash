@@ -1,0 +1,17 @@
+echo "************************************************************************"
+echo
+echo "Welcome to EasyBash! Here you can see what you've made in your business!"
+echo
+echo "************************************************************************"
+echo 
+sel=1
+while [ $sel -ne 5 ]; do
+    echo "What do you want?"
+    echo "1. Add a new buyer"
+    echo "2. Log a deal"
+    echo "3. Check a buyer"
+    echo "4. Check cool things"
+    echo "5. Exit"
+    read sel
+done
+
