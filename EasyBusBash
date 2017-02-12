@@ -19,7 +19,7 @@ while [ 1 ]; do
     echo "4. ${choices[3]}"
     echo "5. ${choices[4]}"
     read sel
-    
+
     if [ "$sel" = "1" ]
     then
         add_buyer "${choices[0]}"
@@ -36,4 +36,6 @@ while [ 1 ]; do
         break
     fi
 done
+
+cd "$curdir"
 

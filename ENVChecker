@@ -1,5 +1,7 @@
 #!/bin/bash
 
 buyerInfoDir=".buyerInfo"
-
-mkdir -p "~/Documents/EasyBusBash/"$USER"/"$buyerInfoDir
+curdir="$PWD"
+getdir="$HOME/Documents/EasyBusBash/"$USER"/"$buyerInfoDir
+mkdir -p "$getdir"
+cd "$getdir"
