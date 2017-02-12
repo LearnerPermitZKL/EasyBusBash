@@ -1,0 +1,5 @@
+#!/bin/bash
+
+buyerInfoDir=".buyerInfo"
+
+mkdir -p "~/Documents/EasyBusBash/"$USER"/"$buyerInfoDir

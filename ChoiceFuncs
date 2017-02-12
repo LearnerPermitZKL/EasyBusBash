@@ -1,0 +1,25 @@
+#!/bin/bash
+
+. "$PWD/ENVChecker"
+buyerFile=".buyers"
+
+add_buyer ()
+{
+    echo "${1}"
+    echo "Please input the new buyer's name:"
+    read newbuyer
+    echo "His/Her name is: $newbuyer, correct? [y/n]"
+    read correct
+    if [[ "$correct" = "y" || "$correct" = "Y" ]] 
+    then
+        uuid="$(uuidgen)"
+        echo "testtest"
+        echo -e $newbuyer" \t "$uuid >> $buyerFile 
+
+        echo
+        echo "Added the new buyer \"$newbuyer\""
+        echo
+    else
+        echo "Cancenled"
+    fi
+}

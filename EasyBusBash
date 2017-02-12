@@ -1,17 +1,39 @@
+#!/bin/bash
+
 echo "************************************************************************"
 echo
 echo "Welcome to EasyBash! Here you can see what you've made in your business!"
 echo
 echo "************************************************************************"
-echo 
-sel=1
-while [ $sel -ne 5 ]; do
+echo
+. "$PWD/ChoiceFuncs"
+
+choices=("Add a new buyer" "Log a deal" "Check a buyer" "Check cool things" "Any other key to Exit")
+
+
+while [ 1 ]; do
     echo "What do you want?"
-    echo "1. Add a new buyer"
-    echo "2. Log a deal"
-    echo "3. Check a buyer"
-    echo "4. Check cool things"
-    echo "5. Exit"
+    echo "1. ${choices[0]}"
+    echo "2. ${choices[1]}"
+    echo "3. ${choices[2]}"
+    echo "4. ${choices[3]}"
+    echo "5. ${choices[4]}"
     read sel
+    
+    if [ "$sel" = "1" ]
+    then
+        add_buyer "${choices[0]}"
+    elif [ "$sel" = "2" ]
+    then
+        echo ${choices[1]}
+    elif [ "$sel" = "3" ]
+    then
+        echo ${choices[2]}
+    elif [ "$sel" = "4" ]
+    then
+        echo "${choices[3]}"
+    else
+        break
+    fi
 done
 
