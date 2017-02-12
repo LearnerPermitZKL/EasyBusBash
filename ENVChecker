@@ -2,6 +2,6 @@
 
 buyerInfoDir=".buyerInfo"
 curdir="$PWD"
-getdir="$HOME/Documents/EasyBusBash/"$USER"/"$buyerInfoDir
+getdir="$HOME/Documents/EasyBusBash/"$USER
 mkdir -p "$getdir"
 cd "$getdir"
