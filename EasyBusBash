@@ -28,7 +28,7 @@ while [ 1 ]; do
         log_deal "${choices[1]}"
     elif [ "$sel" = "3" ]
     then
-        echo ${choices[2]}
+        check_buyer "${choices[2]}"
     elif [ "$sel" = "4" ]
     then
         echo "${choices[3]}"
