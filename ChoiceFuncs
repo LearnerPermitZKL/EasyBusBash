@@ -16,7 +16,7 @@ add_buyer ()
         uuid="$(uuidgen)"
         echo -e $newbuyer" "$uuid >> $buyerFile
         mkdir -p "$buyerInfoDir/"$uuid
-        "Buyer_Spent,You_Paid,Deal_Date,Profit,Item" >> "$buyerInfoDir/$getid/Deals.csv"
+        echo "Buyer_Spent,You_Paid,Deal_Date,Profit,Item" >> "$buyerInfoDir/$uuid/Deals.csv"
         echo
         echo "Added the new buyer \"$newbuyer\""
         echo
@@ -63,14 +63,13 @@ check_buyer ()
         echo "Buyer $buyerName Record"
         total_profit=0
         {
-            read 
             while IFS=",": read -r money_paid money_spent DATE profit item
             do
+                printf "%-12s | %-12s | %-12s | %-12s | %-12s " "$money_paid" "$money_spent" "$DATE" "$profit" "$item"
                 total_profit=$(awk "BEGIN {printf \"%.2f\",${total_profit}+${profit}}")
-
             done 
         }<"$buyerInfoDir/$getid/Deals.csv"
-        column -t -s ',' "$buyerInfoDir/$getid/Deals.csv"
+
         echo "Your total profit from $buyerName is: $total_profit"
     fi
 
