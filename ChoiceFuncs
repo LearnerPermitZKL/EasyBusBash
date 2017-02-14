@@ -11,7 +11,7 @@ add_buyer ()
     read newbuyer
     echo "His/Her name is: $newbuyer, correct? [y/n]"
     read correct
-    if ([ "$correct" = "y" ] || [ "$correct" = "Y" ]) && [ $(is_buyer_exist "$buyerName") = "0" ] 
+    if ([ "$correct" = "y" ] || [ "$correct" = "Y" ]) && [ "$(is_buyer_exist "$buyerName")" = "0" ] 
     then
         uuid="$(uuidgen)"
         echo -e $newbuyer" "$uuid >> $buyerFile
