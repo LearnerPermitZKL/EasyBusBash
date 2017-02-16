@@ -37,17 +37,21 @@ log_deal ()
         echo "Buyer does not exist"
         #TODO give choice to add buyer then continue or list buyers
     else
-        echo "Money buyer paid: (RMB)"
-        read money_paid
-        echo "Money you spent: (USD)"
-        read money_spent
-        echo "Item: (Optional)"
-        read item
-        #TODO ask for double check
-        DATE=$(date +"%m%d%Y")
-        #TODO get current exchange rate
-        profit=$(awk "BEGIN {printf \"%.2f\",${money_paid}/${exchangeRate}-${money_spent}}")
-        echo -e $money_paid","$money_spent","$DATE","$profit","$item>> "$buyerInfoDir/$getid/Deals.csv"
+        enter=""
+        while [ "$enter" = "" ]; do
+            echo "Money buyer paid: (RMB)"
+            read money_paid
+            echo "Money you spent: (USD)"
+            read money_spent
+            echo "Item: (Optional)"
+            read item
+            echo "Press Enter to Continue. Any other key to stop"
+            read enter
+            DATE=$(date +"%m%d%Y")
+            #TODO get current exchange rate
+            profit=$(awk "BEGIN {printf \"%.2f\",${money_paid}/${exchangeRate}-${money_spent}}")
+            echo -e $money_paid","$money_spent","$DATE","$profit","$item>> "$buyerInfoDir/$getid/Deals.csv"
+        done
     fi
     echo
 }

@@ -3,21 +3,19 @@ Note:
 (o) optional
 
 Difficulty:
-    TODO: UTF8 input bash
-
 
 Function:
-    TODO: add-person: 
+    add_buyer: 
             Input: name (m)
             Do: add the person name into file '.persons'
 
 
-    TODO: add-buy: 
+    log_deal: 
             Input: name (m), money-paid (m), money-cost (m), item (o)
-            Do: sanity check paid and cost [cost should < paid]
+            //Do: sanity check paid and cost [cost should < paid]
                 Mark current date time into system
 
-    TODO: check-person:
+    check_buyer:
             Input: name (m)
             Do: Dump person buy information
                 format-table money-paid, money-cost, profit, time, item
