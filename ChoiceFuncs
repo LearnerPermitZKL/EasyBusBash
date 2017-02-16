@@ -11,7 +11,9 @@ add_buyer ()
     read newbuyer
     echo "His/Her name is: $newbuyer, correct? [y/n]"
     read correct
-    if ([ "$correct" = "y" ] || [ "$correct" = "Y" ]) && [ "$(is_buyer_exist "$buyerName")" = "0" ] 
+    getid=$(is_buyer_exist "$newbuyer")
+    
+    if ([ "$correct" = "y" ] || [ "$correct" = "Y" ]) && [ "$getid" = "0" ] 
     then
         uuid="$(uuidgen)"
         echo -e $newbuyer" "$uuid >> $buyerFile
@@ -44,9 +46,10 @@ log_deal ()
         #TODO ask for double check
         DATE=$(date +"%m%d%Y")
         #TODO get current exchange rate
-        profit=$(awk "BEGIN {printf \"%.2f\",${money_paid}/${exchangeRate}+${money_spent}}")
+        profit=$(awk "BEGIN {printf \"%.2f\",${money_paid}/${exchangeRate}-${money_spent}}")
         echo -e $money_paid","$money_spent","$DATE","$profit","$item>> "$buyerInfoDir/$getid/Deals.csv"
     fi
+    echo
 }
 
 check_buyer ()
@@ -56,28 +59,31 @@ check_buyer ()
     echo "Please input buyer name:"
     read buyerName
     getid=$(is_buyer_exist "$buyerName")
-    echo "$getid"
     if [ "$getid" = "0" ]; then 
         echo "Buyer does not exist"
     else
         echo "Buyer $buyerName Record"
         total_profit=0
+        total_paid=0
         {
             while IFS=",": read -r money_paid money_spent DATE profit item
             do
-                printf "%-12s | %-12s | %-12s | %-12s | %-12s " "$money_paid" "$money_spent" "$DATE" "$profit" "$item"
+                printf "%-12s | %-12s | %-12s | %-12s | %-12s \n" "$money_paid" "$money_spent" "$DATE" "$profit" "$item"
                 total_profit=$(awk "BEGIN {printf \"%.2f\",${total_profit}+${profit}}")
+                total_paid=$(awk "BEGIN {printf \"%.2f\",${total_paid}+${money_paid}}")
             done 
         }<"$buyerInfoDir/$getid/Deals.csv"
 
-        echo "Your total profit from $buyerName is: $total_profit"
+        echo "$buyerName total spent: $total_paid"
+        echo "Your gross profit from $buyerName is: $total_profit"
     fi
+    echo
 
 }
 
 is_buyer_exist ()
 {
-    getid='0'
+    getid="0"
     if [ -f "$buyerFile" ]; then
         while IFS=" ": read -r name uuid
         do
@@ -87,4 +93,5 @@ is_buyer_exist ()
             fi
         done <"$buyerFile"
     fi
+    echo "$getid"
 }
